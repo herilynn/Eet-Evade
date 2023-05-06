@@ -1,0 +1,10 @@
+/* outerBackground {
+  background-image: url("../assets/viridianforest.png");
+} */
+
+canvas {
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%);
+  position: absolute;
+}
