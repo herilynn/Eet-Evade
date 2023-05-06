@@ -1,8 +1,8 @@
-const canvas = document.getElementById('canvas');
+const canvas = document.getElementById('canvas1');
 const ctx = canvas.getContext('2d');
 
-canvas.width = 600; //250
-canvas.height = 400; //250
+canvas.width = 550; //300-250
+canvas.height = 400; //300-250
 
 // ctx.fillStyle = "brown";
 // ctx.fillRect(250, 250, 50, 50);
@@ -13,18 +13,18 @@ canvas.height = 400; //250
 const player = {
   width: 50,
   height: 50,
-  x: 125,
-  y: 250,
+  x: 250,
+  y: 350,
   speed: 4,
   dx: 0,
   dy: 0
 };
 
-const eevee = new Image();
+let eevee = new Image();
 eevee.src = "assets/eevee_back.png"
 
 const outerBackground = new Image();
-outerBackground.src = "assets/viridianforest.png"
+outerBackground.src = "assets/EvolutionForest.png"
 
 function drawOuterBackground() {
   ctx.drawImage(outerBackground, 0, 0, canvas.width, canvas.height);
@@ -96,7 +96,7 @@ function keyUp(e) {
   }
 }
 
-drawOuterBackground();
+// drawOuterBackground();
 renderChar();
 
 document.addEventListener('keydown', keyDown);
