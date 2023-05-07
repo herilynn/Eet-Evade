@@ -6,7 +6,7 @@ canvas.width = 550;
 canvas.height = 400;
 
 const items = [];
-const maxItems = 20;
+const maxItems = 5;
 let timer = 0;
 
 function Item(x, y, speed) {
@@ -26,7 +26,7 @@ Item.prototype.draw = function() {
 function generateItems() {
 
   timer++;
-  if (timer % 100 === 0 && items.length < maxItems) {
+  if (timer % 100 === 0 || items.length < maxItems) {
   // const row = Math.floor(Math.random() * canvas.height);
   // const numItems = Math.floor(Math.random() * 1) + 1;
 
@@ -36,6 +36,9 @@ function generateItems() {
 
     const item = new Item(x, 0, speed);
     items.push(item);
+  }
+  if (timer === 200) {
+    timer = 0;
   }
 }
 
