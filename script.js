@@ -1,14 +1,53 @@
-const canvas = document.getElementById('canvas1');
+
+const canvas = document.getElementById('backgroundCanvas');
 const ctx = canvas.getContext('2d');
 
-canvas.width = 550; //300-250
-canvas.height = 400; //300-250
+canvas.width = 550;
+canvas.height = 400;
 
-// ctx.fillStyle = "brown";
-// ctx.fillRect(250, 250, 50, 50);
+const items = [];
+const maxItems = 20;
+let timer = 0;
 
-// const eevee = new Image()
-// eevee.src = "assets/eevee_back.png"
+function Item(x, y, speed) {
+  this.x = x;
+  this.y = y;
+  this.speed = speed;
+}
+
+Item.prototype.update = function() {
+  this.y += this.speed;
+}
+
+Item.prototype.draw = function() {
+  ctx.fillRect(this.x, this.y, 20, 20);
+}
+
+function generateItems() {
+
+  timer++;
+  if (timer % 100 === 0 && items.length < maxItems) {
+  // const row = Math.floor(Math.random() * canvas.height);
+  // const numItems = Math.floor(Math.random() * 1) + 1;
+
+  // for (let i = 0; i < numItems; i++) {
+    const x = Math.random() * (canvas.width - 20);
+    const speed = Math.random() * 0.5 + 1;
+
+    const item = new Item(x, 0, speed);
+    items.push(item);
+  }
+}
+
+function updateItems() {
+  // ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i];
+    item.update();
+    item.draw();
+  }
+}
 
 const player = {
   width: 50,
@@ -21,18 +60,22 @@ const player = {
 };
 
 let eevee = new Image();
-eevee.src = "assets/eevee_back.png"
+eevee.src = "assets/eevee_back.png";
+// eevee.onload = function() {
+//   renderChar();
+// }
 
 const outerBackground = new Image();
-outerBackground.src = "assets/EvolutionForest.png"
+outerBackground.src = "assets/EvolutionForest.png";
+// outerBackground.onload = function() {
+//   ctx.drawImage(outerBackground, 0, 0, canvas.width, canvas.height);
+// }
 
 function drawOuterBackground() {
   ctx.drawImage(outerBackground, 0, 0, canvas.width, canvas.height);
-  requestAnimationFrame(drawOuterBackground);
 }
 
 function drawPlayer() {
-  ctx.drawImage
   ctx.drawImage(eevee, player.x, player.y, player.width, player.height);
 }
 
@@ -42,7 +85,7 @@ function clear() {
 
 function newPos() {
   player.x += player.dx;
-  player.y +=  player.dy;
+  player.y += player.dy;
 
   detectWalls();
 }
@@ -61,8 +104,10 @@ function renderChar() {
   clear();
   drawOuterBackground();
   drawPlayer();
+  generateItems();
+  updateItems();
   newPos();
-  requestAnimationFrame(renderChar); //?
+  requestAnimationFrame(renderChar);
 }
 
 function moveRight() {
@@ -78,26 +123,20 @@ function keyDown(e) {
     moveRight();
   } else if (e.key === 'ArrowLeft') {
     moveLeft();
-  // } else if (e.key === 'ArrowUp') {
-  //   moveUp();
-  // } else if (e.key === 'ArrowDown') {
-  //   moveDown();
   }
 }
 
 function keyUp(e) {
-  if (e.key === 'ArrowRight' || 
-  e.key === 'ArrowLeft' ||
-  e.key === 'Left' ||
-  e.key === 'Right') 
-  {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
     player.dx = 0;
     player.dy = 0;
   }
 }
 
-// drawOuterBackground();
+// generateItems();
 renderChar();
+// generateItems();
+// updateItems();
 
 document.addEventListener('keydown', keyDown);
 document.addEventListener('keyup', keyUp);
