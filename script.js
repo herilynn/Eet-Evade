@@ -21,15 +21,13 @@ Item.prototype.update = function() {
 }
 
 Item.prototype.draw = function() {
-
-  // ctx.fillRect(this.x, this.y, 20, 20);
   if (this.type === 'berry') {
     ctx.fillStyle = 'black';
     ctx.fillRect(this.x, this.y, 20, 20);
   } else if (this.type === 'fire') {
     ctx.fillStyle = 'orange';
     ctx.fillRect(this.x, this.y, 20, 20);
-  }else if (this.type === 'thunder') {
+  } else if (this.type === 'thunder') {
     ctx.fillStyle = 'green';
     ctx.fillRect(this.x, this.y, 20, 20);
   } else if (this.type === 'water') {
