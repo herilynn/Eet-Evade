@@ -9,10 +9,11 @@ const items = [];
 const maxItems = 5;
 let timer = 0;
 
-function Item(x, y, speed) {
+function Item(x, y, speed, type) {
   this.x = x;
   this.y = y;
   this.speed = speed;
+  this.type = type;
 }
 
 Item.prototype.update = function() {
@@ -20,7 +21,33 @@ Item.prototype.update = function() {
 }
 
 Item.prototype.draw = function() {
-  ctx.fillRect(this.x, this.y, 20, 20);
+
+  // ctx.fillRect(this.x, this.y, 20, 20);
+  if (this.type === 'berry') {
+    ctx.fillStyle = 'black';
+    ctx.fillRect(this.x, this.y, 20, 20);
+  } else if (this.type === 'fire') {
+    ctx.fillStyle = 'orange';
+    ctx.fillRect(this.x, this.y, 20, 20);
+  }else if (this.type === 'thunder') {
+    ctx.fillStyle = 'green';
+    ctx.fillRect(this.x, this.y, 20, 20);
+  } else if (this.type === 'water') {
+    ctx.fillStyle = 'purple';
+    ctx.fillRect(this.x, this.y, 20, 20);
+  } else if (this.type === 'poke') {
+    ctx.fillStyle = 'red';
+    ctx.fillRect(this.x, this.y, 20, 20);
+  } else if (this.type === 'great') {
+    ctx.fillStyle = 'blue';
+    ctx.fillRect(this.x, this.y, 20, 20);
+  } else if (this.type === 'ultra') {
+    ctx.fillStyle = 'yellow' 
+    ctx.fillRect(this.x, this.y, 20, 20);
+  } else if (this.type === 'master') {
+    ctx.fillStyle = 'pink';
+    ctx.fillRect(this.x, this.y, 20, 20);
+  }
 }
 
 function generateItems() {
@@ -34,7 +61,31 @@ function generateItems() {
     const x = Math.random() * (canvas.width - 20);
     const speed = Math.random() * 0.5 + 1;
 
-    const item = new Item(x, 0, speed);
+    const types = [
+      {type: 'berry', weight: 30}, 
+      {type: 'poke', weight: 5}, 
+      {type: 'great', weight: 3}, 
+      {type: 'ultra', weight: 2}, 
+      {type: 'master', weight: 1}, 
+      {type: 'fire', weight: 4}, 
+      {type: 'thunder', weight: 4}, 
+      {type: 'water', weight: 4}
+    ];
+
+    const randomNum = Math.random() * 53;
+
+    let selectedType;
+    let weightSum = 0;
+    for (let i = 0; i < types.length; i++) {
+      weightSum += types[i].weight;
+      if (randomNum <= weightSum) {
+        selectedType = types[i].type;
+        break;
+      }
+    }
+    // const randomType = types[Math.floor(Math.random() * types.length)];
+
+    const item = new Item(x, 0, speed, selectedType);
     items.push(item);
   }
   if (timer === 200) {
