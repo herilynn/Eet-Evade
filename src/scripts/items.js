@@ -1,3 +1,4 @@
+import {player} from './eevee.js'
 
 const canvas = document.getElementById('backgroundCanvas');
 const ctx = canvas.getContext('2d');
@@ -118,6 +119,7 @@ export function generateItems() {
   if (timer === 200) {
     timer = 0;
   }
+  checkCollision();
 }
 
 export function updateItems() {
@@ -128,14 +130,14 @@ export function updateItems() {
   }
 }
 
-// function checkCollision() {
-//   for (let i = 0; i < items.length; i++) {
-//     const item = items[i];
-//     if (player.x < item.x + item.width &&
-//       player.x + player.width > item.x &&
-//       player.y < item.y + item.height &&
-//       player.y + player.height > item.y) {
-//         items.splice(i, 1);
-//       }
-//   }
-// }
+function checkCollision() {
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i];
+    if (player.x < item.x + 20 &&
+      player.x + player.width > item.x &&
+      player.y < item.y + 20 &&
+      player.y + player.height > item.y) {
+        items.splice(i, 1);
+      }
+  }
+}

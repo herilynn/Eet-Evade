@@ -12,7 +12,7 @@ class Player {
   }
 }
 
-let player = new Player();
+export let player = new Player();
 
 const canvas = document.getElementById('backgroundCanvas');
 const ctx = canvas.getContext('2d');
@@ -87,6 +87,8 @@ export function keyUp(e) {
     player.dy = 0;
   } 
 }
+
+
 
 // export {clear, drawOuterBackground, drawPlayer, generateItems, updateItems, newPos};
 export { renderChar };
