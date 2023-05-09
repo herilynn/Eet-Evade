@@ -16,16 +16,40 @@ class Player {
       flareon: '../assets/flareon_back.png',
       jolteon: '../assets/jolteon_back.png',
       vaporeon: '../assets/vaporeon_back.png',
+      eevee_stunned: '../assets/eevee_stunned.png',
+      flareon_stunned: '../assets/flareon_stunned.png',
+      jolteon_stunned: '../assets/jolteon_stunned.png',
+      vaporeon_stunned: '../assets/vaporeon_stunned.png'
     };
 
     this.sprite = new Image();
     this.sprite.src = this.evolutionSprites[this.currentEvolution];
+
+    // this.tempSprite = null;
+    // this.isTempSpriteActive = false;
+    // this.tempSpriteDuration = 3000;
   }
 
   draw() {
+    // if (this.isTempSpriteActive && this.tempSprite.tempSprite) {
+    //   ctx.drawImage(this.tempSprite, this.x, this.y, this.width, this.height);
+    // } else {
     ctx.drawImage(this.sprite, this.x, this.y, this.width, this.height);
-  }
+  // }
 }
+
+  // setTempSprite(spriteSrc) {
+  //   this.tempSprite = new Image();
+  //   this.tempSprite.src = spriteSrc;
+  //   this.isTempSpriteActive = true;
+
+  //   setTimeout(() => {
+  //     this.isTempSpriteActive = false;
+  //     this.tempSprite = null;
+  //   }, this.tempSpriteDuration);
+  // }
+}
+  
 
 // Player.prototype.draw = function() {
 //   let flareon = new Image();
@@ -56,9 +80,9 @@ function drawOuterBackground() {
   ctx.drawImage(outerBackground, 0, 0, canvas.width, canvas.height);
 }
 
-function drawPlayer() {
-  ctx.drawImage(eevee, player.x, player.y, player.width, player.height);
-}
+// function drawPlayer() {
+//   ctx.drawImage(eevee, player.x, player.y, player.width, player.height);
+// }
 
 function clear() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -131,9 +155,29 @@ function checkCollision() {
           player.currentEvolution = 'jolteon';
         } else if (item.type === 'water') {
           player.currentEvolution = 'vaporeon';
-        }
+        } else if (item.type === 'poke' && player.currentEvolution === 'eevee') {
+          player.currentEvolution = 'eevee_stunned';
+        } else if (item.type === 'great' && player.currentEvolution === 'eevee') {
+          player.currentEvolution = 'eevee_stunned';
+        } else if (item.type === 'great' && player.currentEvolution === 'flareon') {
+          player.currentEvolution = 'flareon_stunned';
+        } else if (item.type === 'great' && player.currentEvolution === 'jolteon') {
+          player.currentEvolution = 'jolteon_stunned';
+        } else if (item.type === 'great' && player.currentEvolution === 'vaporeon') {
+          player.currentEvolution = 'vaporeon_stunned';
+        } else if (item.type === 'ultra' && player.currentEvolution === 'eevee') {
+          player.currentEvolution = 'eevee_stunned';
+        } else if (item.type === 'ultra' && player.currentEvolution === 'flareon') {
+          player.currentEvolution = 'flareon_stunned';
+        } else if (item.type === 'ultra' && player.currentEvolution === 'jolteon') {
+          player.currentEvolution = 'jolteon_stunned';
+        } else if (item.type === 'ultra' && player.currentEvolution === 'vaporeon') {
+          player.currentEvolution = 'vaporeon_stunned';
+        };
   
         player.sprite.src = player.evolutionSprites[player.currentEvolution];
+
+        // player.setTempSprite(item.type + '.png');
       }
   }
 }
