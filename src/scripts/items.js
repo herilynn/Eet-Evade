@@ -3,7 +3,7 @@ import {player} from './eevee.js'
 const canvas = document.getElementById('backgroundCanvas');
 const ctx = canvas.getContext('2d');
 
-const items = [];
+export const items = [];
 const maxItems = 5;
 let timer = 0;
 
@@ -13,6 +13,8 @@ export function Item(x, y, speed, type) {
   this.speed = speed;
   this.type = type;
 }
+
+
 
 Item.prototype.update = function() {
   this.y += this.speed;
@@ -119,7 +121,7 @@ export function generateItems() {
   if (timer === 200) {
     timer = 0;
   }
-  checkCollision();
+  // checkCollision();
 }
 
 export function updateItems() {
@@ -130,14 +132,23 @@ export function updateItems() {
   }
 }
 
-function checkCollision() {
-  for (let i = 0; i < items.length; i++) {
-    const item = items[i];
-    if (player.x < item.x + 20 &&
-      player.x + player.width > item.x &&
-      player.y < item.y + 20 &&
-      player.y + player.height > item.y) {
-        items.splice(i, 1);
-      }
-  }
-}
+// function checkCollision() {
+//   for (let i = 0; i < items.length; i++) {
+//     const item = items[i];
+//     if (player.x < item.x + 25 &&
+//       player.x + player.width > item.x &&
+//       player.y < item.y + 25 &&
+//       player.y + player.height > item.y) {
+//         items.splice(i, 1);
+//       }
+
+      
+//       // if (item.type === 'fire') {
+//       //   player.spriteIndex = 1;
+//       // } else if (item.type === 'thunder') {
+//       //   player.spriteIndex = 2;
+//       // } else if (item.type === 'water') {
+//       //   player.spriteIndex = 3;
+//       // }       
+//   }
+// }

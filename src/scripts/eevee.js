@@ -1,4 +1,4 @@
-import { generateItems, updateItems } from './items.js';
+import { generateItems, updateItems, items } from './items.js';
 
 class Player {
   constructor() {
@@ -9,8 +9,34 @@ class Player {
     this.speed = 4;
     this.dx = 0;
     this.dy = 0;
+
+    this.currentEvolution = 'eevee';
+    this.evolutionSprites = {
+      eevee: '../assets/eevee_back.png',
+      flareon: '../assets/flareon_back.png',
+      jolteon: '../assets/jolteon_back.png',
+      vaporeon: '../assets/vaporeon_back.png',
+    };
+
+    this.sprite = new Image();
+    this.sprite.src = this.evolutionSprites[this.currentEvolution];
+  }
+
+  draw() {
+    ctx.drawImage(this.sprite, this.x, this.y, this.width, this.height);
   }
 }
+
+// Player.prototype.draw = function() {
+//   let flareon = new Image();
+//       flareon.src = "..assets/flareon_back.png";
+
+//       let jolteon = new Image();
+//       jolteon.src = '..assets/jolteon_back.png';
+
+//       let vaporeon = new Image();
+//       vaporeon.src = '..assets/vaporeon_back.png';
+// }
 
 export let player = new Player();
 
@@ -58,8 +84,9 @@ function detectWalls() {
 function renderChar() {
   clear();
   drawOuterBackground();
-  drawPlayer();
+  player.draw();
   generateItems();
+  checkCollision();
   updateItems();
   newPos();
   requestAnimationFrame(renderChar);
@@ -88,6 +115,28 @@ export function keyUp(e) {
   } 
 }
 
+
+function checkCollision() {
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i];
+    if (player.x < item.x + 25 &&
+      player.x + player.width > item.x &&
+      player.y < item.y + 25 &&
+      player.y + player.height > item.y) {
+        items.splice(i, 1);
+
+        if (item.type === 'fire') {
+          player.currentEvolution = 'flareon';
+        } else if (item.type === 'thunder') {
+          player.currentEvolution = 'jolteon';
+        } else if (item.type === 'water') {
+          player.currentEvolution = 'vaporeon';
+        }
+  
+        player.sprite.src = player.evolutionSprites[player.currentEvolution];
+      }
+  }
+}
 
 
 // export {clear, drawOuterBackground, drawPlayer, generateItems, updateItems, newPos};
