@@ -23,28 +23,28 @@ Item.prototype.update = function() {
 
 Item.prototype.draw = function() {
   let razzberry = new Image();
-  razzberry.src = "../assets/razzberry.png";
+  razzberry.src = "src/assets/razzberry.png";
 
   let firestone = new Image();
-  firestone.src = "../assets/firestone.png";
+  firestone.src = "src/assets/firestone.png";
 
   let waterstone = new Image();
-  waterstone.src = "../assets/waterstone.png";
+  waterstone.src = "src/assets/waterstone.png";
 
   let thunderstone = new Image();
-  thunderstone.src = "../assets/thunderstone.png";
+  thunderstone.src = "src/assets/thunderstone.png";
 
   let pokeball = new Image();
-  pokeball.src = "../assets/pokeball.png";
+  pokeball.src = "src/assets/pokeball.png";
 
   let greatball = new Image();
-  greatball.src = "../assets/greatball.png";
+  greatball.src = "src/assets/greatball.png";
 
   let ultraball = new Image();
-  ultraball.src = "../assets/ultraball.png";
+  ultraball.src = "src/assets/ultraball.png";
 
   let masterball = new Image();
-  masterball.src = "../assets/masterball.png"
+  masterball.src = "src/assets/masterball.png"
 
   if (this.type === 'berry') {
     ctx.drawImage(razzberry, this.x, this.y, 30, 30);

@@ -12,14 +12,14 @@ class Player {
 
     this.currentEvolution = 'eevee';
     this.evolutionSprites = {
-      eevee: '../assets/eevee_back.png',
-      flareon: '../assets/flareon_back.png',
-      jolteon: '../assets/jolteon_back.png',
-      vaporeon: '../assets/vaporeon_back.png',
-      eevee_stunned: '../assets/eevee_stunned.png',
-      flareon_stunned: '../assets/flareon_stunned.png',
-      jolteon_stunned: '../assets/jolteon_stunned.png',
-      vaporeon_stunned: '../assets/vaporeon_stunned.png'
+      eevee: 'src/assets/eevee_back.png',
+      flareon: 'src/assets/flareon_back.png',
+      jolteon: 'src/assets/jolteon_back.png',
+      vaporeon: 'src/assets/vaporeon_back.png',
+      eevee_stunned: 'src/assets/eevee_stunned.png',
+      flareon_stunned: 'src/assets/flareon_stunned.png',
+      jolteon_stunned: 'src/assets/jolteon_stunned.png',
+      vaporeon_stunned: 'src/assets/vaporeon_stunned.png'
     };
 
     this.sprite = new Image();
@@ -71,10 +71,10 @@ canvas.width = 550;
 canvas.height = 400;
 
 let eevee = new Image();
-eevee.src = "../assets/eevee_back.png";
+eevee.src = "src/assets/eevee_back.png";
 
 const outerBackground = new Image();
-outerBackground.src = "../assets/EvolutionForest.png";
+outerBackground.src = "src/assets/EvolutionForest.png";
 
 function drawOuterBackground() {
   ctx.drawImage(outerBackground, 0, 0, canvas.width, canvas.height);
