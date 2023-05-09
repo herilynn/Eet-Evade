@@ -1,6 +1,7 @@
-import {player} from './eevee.js'
+// import {player} from './eevee.js'
 
 const canvas = document.getElementById('backgroundCanvas');
+console.log(canvas)
 const ctx = canvas.getContext('2d');
 
 export const items = [];
