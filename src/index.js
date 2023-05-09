@@ -1,9 +1,15 @@
 
 import {renderChar, keyDown, keyUp} from './scripts/eevee.js';
 // import {items} from './scripts/items.js'
+window.addEventListener("load", () => {
+  document.addEventListener('keydown', keyDown);
+  document.addEventListener('keyup', keyUp);
+  
+  renderChar();
 
-document.addEventListener('keydown', keyDown);
-document.addEventListener('keyup', keyUp);
+})
+// document.addEventListener('keydown', keyDown);
+// document.addEventListener('keyup', keyUp);
 
 // function checkCollision() {
 //   for (let i = 0; i < items.length; i++) {
@@ -17,7 +23,7 @@ document.addEventListener('keyup', keyUp);
 //   }
 // }
 
-renderChar();
+// renderChar();
 // function loop() {
 //   clear();
 //   drawOuterBackground();
