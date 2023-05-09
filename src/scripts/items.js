@@ -23,10 +23,10 @@ Item.prototype.update = function() {
 
 Item.prototype.draw = function() {
   let razzberry = new Image();
-  razzberry.src = "src/assets/razzberry.png";
+  razzberry.src = "../src/assets/razzberry.png";
 
   let firestone = new Image();
-  firestone.src = "src/assets/firestone.png";
+  firestone.src = "../src/assets/firestone.png";
 
   let waterstone = new Image();
   waterstone.src = "src/assets/waterstone.png";
