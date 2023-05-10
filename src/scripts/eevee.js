@@ -1,5 +1,8 @@
 import { generateItems, updateItems, items } from './items.js';
 
+let points = 0;
+let gameOver = false;
+
 class Player {
   constructor() {
     this.width = 50;
@@ -49,18 +52,6 @@ class Player {
   //   }, this.tempSpriteDuration);
   // }
 }
-  
-
-// Player.prototype.draw = function() {
-//   let flareon = new Image();
-//       flareon.src = "..assets/flareon_back.png";
-
-//       let jolteon = new Image();
-//       jolteon.src = '..assets/jolteon_back.png';
-
-//       let vaporeon = new Image();
-//       vaporeon.src = '..assets/vaporeon_back.png';
-// }
 
 export let player = new Player();
 
@@ -105,16 +96,32 @@ function detectWalls() {
   }
 }
 
+let animationId;
 function renderChar() {
+  // if (gameOver) {
+  //   cancelAnimationFrame(animationId);
+    
+  //   return;
+  // }
+
   clear();
   drawOuterBackground();
-  player.draw();
+  
   generateItems();
   checkCollision();
   updateItems();
+
   newPos();
-  requestAnimationFrame(renderChar);
+  player.draw();
+  if (!gameOver){
+    animationId = requestAnimationFrame(renderChar);
+  }
+  else {
+    console.log("game over")
+  }
 }
+
+// animationId = requestAnimationFrame(renderChar);
 
 function moveRight() {
   player.dx = player.speed;
@@ -139,7 +146,6 @@ export function keyUp(e) {
   } 
 }
 
-
 function checkCollision() {
   for (let i = 0; i < items.length; i++) {
     const item = items[i];
@@ -149,7 +155,15 @@ function checkCollision() {
       player.y + player.height > item.y) {
         items.splice(i, 1);
 
-        if (item.type === 'fire') {
+        if (item.type === 'master' && player.currentEvolution === 'eevee') {
+          gameOver = true;
+        } else if (item.type === 'master' && player.currentEvolution === 'flareon') {
+          gameOver = true;
+        } else if (item.type === 'master' && player.currentEvolution === 'jolteon') {
+          gameOver = true;
+        } else if (item.type === 'master' && player.currentEvolution === 'vaporeon') {
+          gameOver = true; 
+        }  else if (item.type === 'fire') {
           player.currentEvolution = 'flareon';
         } else if (item.type === 'thunder') {
           player.currentEvolution = 'jolteon';
@@ -173,7 +187,8 @@ function checkCollision() {
           player.currentEvolution = 'jolteon_stunned';
         } else if (item.type === 'ultra' && player.currentEvolution === 'vaporeon') {
           player.currentEvolution = 'vaporeon_stunned';
-        };
+        }
+        ;
   
         player.sprite.src = player.evolutionSprites[player.currentEvolution];
 
