@@ -135,6 +135,10 @@ function startGame() {
 
 function drawStartScreen() {
   clear();
+
+  ctx.fillStyle = "#8bac0f";
+  ctx.fillRect(10, canvas.height/2 - 100, canvas.width - 12, 299);
+
   ctx.fillStyle = '#000000';
   ctx.font = '30px Arial';
   ctx.textAlign = 'center';
@@ -143,7 +147,7 @@ function drawStartScreen() {
 
   const textLines = getWrappedTextLines(text, canvas.width - 40, 16);
 
-  const textHeight = textLines.length * 20; // Adjust line height if needed
+  const textHeight = textLines.length * 20; 
   const startY = canvas.height / 2 - textHeight / 2;
 
   for (let i = 0; i < textLines.length; i++) {
