@@ -2,6 +2,7 @@ import { generateItems, updateItems, items } from './items.js';
 
 let points = 0;
 let gameOver = false;
+let gameStart = false;
 
 class Player {
   constructor() {
@@ -103,6 +104,10 @@ function renderChar() {
     
   //   return;
   // }
+  if(!gameStart) {
+    drawStartScreen();
+    return;
+  }
 
   clear();
   drawOuterBackground();
@@ -122,6 +127,56 @@ function renderChar() {
 }
 
 // animationId = requestAnimationFrame(renderChar);
+
+function startGame() {
+  gameStart = true;
+  renderChar();
+}
+
+function drawStartScreen() {
+  clear();
+  ctx.fillStyle = '#000000';
+  ctx.font = '30px Arial';
+  ctx.textAlign = 'center';
+
+  let text = 'Reach the required amount of points by collecting items. HOWEVER, avoid the pokeballs that are trying to catch you. They will take away time or worse; lose if you get hit by the masterball(purple). If you evolve from getting the stones; pokeballs(red) will not take time away. Points will double when evolved. Press "spacebar" to start. Left and right arrows control your character.';
+
+  const textLines = getWrappedTextLines(text, canvas.width - 40, 16);
+
+  const textHeight = textLines.length * 20; // Adjust line height if needed
+  const startY = canvas.height / 2 - textHeight / 2;
+
+  for (let i = 0; i < textLines.length; i++) {
+    ctx.fillText(textLines[i], canvas.width / 2, startY + i * 20);
+  }
+}
+
+function getWrappedTextLines(text, maxWidth, fontSize) {
+  const words = text.split(' ');
+  const lines = [];
+  let currentLine = words[0];
+
+  ctx.font = fontSize + 'px Arial';
+
+  for (let i = 1; i < words.length; i++) {
+    const word = words[i];
+    const width = ctx.measureText(currentLine + ' ' + word).width;
+
+    if (width < maxWidth - 45) {
+      currentLine += ' ' + word;
+    } else {
+      lines.push(currentLine);
+      currentLine = word;
+    }
+  }
+
+  lines.push(currentLine);
+  return lines;
+}
+
+//   let textWidth = ctx.measureText(text.width);
+//   ctx.fillText(text, canvas.width/2, canvas.height/2, textWidth);
+// }
 
 function moveRight() {
   player.dx = player.speed;
@@ -197,6 +252,13 @@ function checkCollision() {
   }
 }
 
+document.addEventListener('keydown', function(event) {
+  if (event.code === 'Space') {
+    startGame();
+  }
+});
+
+canvas.addEventListener('click', startGame);
 
 // export {clear, drawOuterBackground, drawPlayer, generateItems, updateItems, newPos};
 export { renderChar };
