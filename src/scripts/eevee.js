@@ -7,6 +7,18 @@ let gameStart = false;
 let seconds = 120;
 let minutes = 0;
 
+let currentAudio = null;
+let eeveeSound = new Audio("/src/assets/eevee_cry.mp3");
+let jolteonSound = new Audio("/src/assets/jolteon_cry.mp3");
+let flareonSound = new Audio("/src/assets/flareon_cry.mp3");
+let vaporeonSound = new Audio("/src/assets/vaporeon_cry.mp3");
+
+let nintendoSound = new Audio("/src/assets/gba_startup.mp3");
+// nintendoSound.loop = true;
+
+let bgSound = new Audio("/src/assets/foreboding_forest.mp3");
+// bgSound.loop = true;
+
 let appendMinutes = document.getElementById("minutes");
 let appendSeconds = document.getElementById("seconds");
 
@@ -174,7 +186,7 @@ function renderChar() {
   newPos();
   player.draw();
 
-  if (points >= 100) {
+  if (points >= 200) {
     gameOver = true;
     console.log("You Win!")
   }
@@ -185,6 +197,8 @@ function renderChar() {
   else {
     console.log("game over")
     animateEndScreen();
+    bgSound.pause();
+    nintendoSound.play();
   }
 }
 
@@ -193,6 +207,7 @@ function renderChar() {
 function startGame() {
   gameStart = true;
   renderChar();
+  bgSound.play();
 }
 
 
@@ -306,39 +321,51 @@ function checkCollision() {
           gameOver = true; 
         }  else if (item.type === 'fire') {
           player.currentEvolution = 'flareon';
+          flareonSound.play();
           points += 5;
         } else if (item.type === 'thunder') {
           player.currentEvolution = 'jolteon';
+          jolteonSound.play();
           points += 5;
         } else if (item.type === 'water') {
           player.currentEvolution = 'vaporeon';
+          vaporeonSound.play();
           points += 5;
         } else if (item.type === 'poke' && player.currentEvolution === 'eevee') {
           player.currentEvolution = 'eevee_stunned';
+          eeveeSound.play();
           seconds -= 2;
         } else if (item.type === 'great' && player.currentEvolution === 'eevee') {
           player.currentEvolution = 'eevee_stunned';
+          eeveeSound.play();
           seconds -= 4;
         } else if (item.type === 'great' && player.currentEvolution === 'flareon') {
           player.currentEvolution = 'flareon_stunned';
+          flareonSound.play();
           seconds -= 3;
         } else if (item.type === 'great' && player.currentEvolution === 'jolteon') {
           player.currentEvolution = 'jolteon_stunned';
+          jolteonSound.play();
           seconds -= 3;
         } else if (item.type === 'great' && player.currentEvolution === 'vaporeon') {
           player.currentEvolution = 'vaporeon_stunned';
+          vaporeonSound.play();
           seconds -= 3;
         } else if (item.type === 'ultra' && player.currentEvolution === 'eevee') {
           player.currentEvolution = 'eevee_stunned';
+          eeveeSound.play();
           seconds -= 8;
         } else if (item.type === 'ultra' && player.currentEvolution === 'flareon') {
           player.currentEvolution = 'flareon_stunned';
+          flareonSound.play();
           seconds -= 5;
         } else if (item.type === 'ultra' && player.currentEvolution === 'jolteon') {
           player.currentEvolution = 'jolteon_stunned';
+          jolteonSound.play();
           seconds -= 5;
         } else if (item.type === 'ultra' && player.currentEvolution === 'vaporeon') {
           player.currentEvolution = 'vaporeon_stunned'; 
+          vaporeonSound.play();
           seconds -= 5;
         } else if (item.type === 'berry' && player.currentEvolution === 'eevee') {
           points += 2;
