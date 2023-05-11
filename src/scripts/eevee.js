@@ -21,6 +21,9 @@ let nintendoSound = new Audio("/src/assets/gba_startup.mp3");
 let bgSound = new Audio("/src/assets/foreboding_forest.mp3");
 bgSound.loop = true;
 
+let dangerSound = new Audio("/src/assets/red_health.mp3");
+dangerSound.loop = true;
+
 let appendMinutes = document.getElementById("minutes");
 let appendSeconds = document.getElementById("seconds");
 
@@ -62,6 +65,8 @@ function startTimer() {
     appendSeconds.style.color = "red";
     appendMinutes.style.color = "red";
     document.querySelector('.light').style.backgroundColor = 'rgba(252, 32, 16, 0.929)';
+    bgSound.pause();
+    dangerSound.play();
   } else if (seconds === 20) {
     document.querySelector('.light').style.backgroundColor = 'rgba(215, 20, 20, 0.548)';
   } else if (seconds === 10) {
@@ -296,6 +301,7 @@ function renderChar() {
     console.log("game over")
     animateEndScreen();
     bgSound.pause();
+    dangerSound.pause();
     nintendoSound.play();
   }
 }
