@@ -40,15 +40,32 @@ function startTimer() {
   appendMinutes.innerHTML = minutes < 10 ? "0" + minutes : minutes;
   appendSeconds.innerHTML = seconds < 10 ? "0" + seconds : seconds;
 
-  if (seconds === 60) {
+  if (seconds === 110) {
+    document.querySelector('.light').style.backgroundColor = 'rgba(164, 241, 49, 0.768)';
+  } else if (seconds === 100) {
+    document.querySelector('.light').style.backgroundColor = 'rgba(172, 248, 58, 0.768)';
+  } else if (seconds === 90) {
+    document.querySelector('.light').style.backgroundColor = 'rgba(186, 250, 90, 0.621)';
+  } else if (seconds === 80) {
+    document.querySelector('.light').style.backgroundColor = 'rgba(204, 244, 75, 0.644)';
+  } else if (seconds === 70) {
+    document.querySelector('.light').style.backgroundColor = 'rgba(205, 233, 45, 0.644)';
+  } else if (seconds === 60) {
     appendSeconds.style.color = "yellow";
     appendMinutes.style.color = "yellow";
-    document.querySelector('.light').style.backgroundColor = 'yellow';
-  } else if (seconds <= 30) {
+    document.querySelector('.light').style.backgroundColor = 'rgba(220, 220, 47, 0.484)';
+  } else if (seconds === 50) {
+    document.querySelector('.light').style.backgroundColor = 'rgba(251, 209, 41, 0.693)';
+  } else if (seconds === 40) {
+    document.querySelector('.light').style.backgroundColor = 'rgba(252, 83, 16, 0.868)';
+  } else if (seconds === 30) {
     appendSeconds.style.color = "red";
     appendMinutes.style.color = "red";
-    document.querySelector('.light').style.backgroundColor = 'red';
-
+    document.querySelector('.light').style.backgroundColor = 'rgba(252, 32, 16, 0.929)';
+  } else if (seconds === 20) {
+    document.querySelector('.light').style.backgroundColor = 'rgba(215, 20, 20, 0.548)';
+  } else if (seconds === 10) {
+    document.querySelector('.light').style.backgroundColor = 'rgba(215, 20, 20, 0.393)';
   }
 }
 
