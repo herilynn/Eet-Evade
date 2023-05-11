@@ -37,6 +37,17 @@ function startTimer() {
 
   appendMinutes.innerHTML = minutes < 10 ? "0" + minutes : minutes;
   appendSeconds.innerHTML = seconds < 10 ? "0" + seconds : seconds;
+
+  if (seconds === 60) {
+    appendSeconds.style.color = "yellow";
+    appendMinutes.style.color = "yellow";
+    document.querySelector('.light').style.backgroundColor = 'yellow';
+  } else if (seconds <= 30) {
+    appendSeconds.style.color = "red";
+    appendMinutes.style.color = "red";
+    document.querySelector('.light').style.backgroundColor = 'red';
+
+  }
 }
 
 // function startTimer() {
@@ -189,7 +200,10 @@ function renderChar() {
   if (points >= 200) {
     gameOver = true;
     console.log("You Win!")
+    // renderChar();
   }
+
+  
 
   if (!gameOver){
     animationId = requestAnimationFrame(renderChar);

@@ -27,6 +27,17 @@
   z-index: 1;
 }
 
+.light {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  position: absolute;
+  top: 36.2%;
+  left: 4.01%;
+  background-color: greenyellow;
+  z-index: 1;
+}
+
 #pointsGauge {
   width: 150px;
   height: 20px;
