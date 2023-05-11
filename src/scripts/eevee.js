@@ -19,7 +19,7 @@ let nintendoSound = new Audio("/src/assets/gba_startup.mp3");
 // nintendoSound.loop = true;
 
 let bgSound = new Audio("/src/assets/foreboding_forest.mp3");
-// bgSound.loop = true;
+bgSound.loop = true;
 
 let appendMinutes = document.getElementById("minutes");
 let appendSeconds = document.getElementById("seconds");
@@ -100,7 +100,7 @@ const endScreen = {
 endScreen.spriteSheet.src = "/src/assets/spritesheet.png";
 
 
-class Player {
+export class Player {
   constructor() {
     this.width = 50;
     this.height = 50;
@@ -149,6 +149,70 @@ class Player {
   //   }, this.tempSpriteDuration);
   // }
 }
+
+// let demoPlayer = new Player();
+// const demoCanvas = document.getElementById('demoCanvas');
+// const demoCtx = demoCanvas.getContext('2d');
+
+// demoCanvas.width = 550;
+// demoCanvas.height = 400;
+
+// let demoEevee = new Image();
+// demoEevee.src = "src/assets/eevee_back.png";
+
+// const background = new Image();
+// background.src = "src/assets/EvolutionForest.png";
+
+// function drawDemoBackground() {
+//   demoCtx.drawImage(background, 0, 0, demoCanvas.width, demoCanvas.height);
+// }
+
+// function demoNewPos() {
+//   demoPlayer.x += demoPlayer.dx;
+//   demoPlayer.y += demoPlayer.dy;
+
+//   detectWall();
+// }
+
+// function detectWall() {
+//   if (demoPlayer.x < 0) {
+//     demoPlayer.x = 0;
+//   }
+
+//   if (demoPlayer.x + demoPlayer.width > demoCanvas.width) {
+//     demoPlayer.x = demoCanvas.width - demoPlayer.width;
+//   }
+// }
+
+// function demoMoveRight() {
+//   demoPlayer.dx = demoPlayer.speed;
+// }
+
+// function demoMoveLeft() {
+//   demoPlayer.dx = -demoPlayer.speed;
+// }
+
+// export function demoKeyDown(e) {
+//   if (e.key === 'ArrowRight') {
+//     moveRight();
+//   } else if (e.key === 'ArrowLeft') {
+//     moveLeft();
+//   }
+// }
+
+// export function demoKeyUp(e) {
+//   if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+//     demoPlayer.dx = 0;
+//     demoPlayer.dy = 0;
+//   } 
+// }
+
+// function renderDemo(){
+//   clear();
+//   drawDemoBackground();
+//   demoNewPos();
+//   demoPlayer.draw();
+// }
 
 export let player = new Player();
 
@@ -202,6 +266,7 @@ function renderChar() {
   // }
   if(!gameStart) {
     drawStartScreen();
+    // renderDemo();
     return;
   }
 
@@ -314,10 +379,12 @@ function animateEndScreen() {
 
 function moveRight() {
   player.dx = player.speed;
+  demoPlayer.dx = demoPlayer.speed;
 }
 
 function moveLeft() {
   player.dx = -player.speed;
+  demoPlayer.dx = -demoPlayer.speed;
 }
 
 export function keyDown(e) {
@@ -332,6 +399,8 @@ export function keyUp(e) {
   if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
     player.dx = 0;
     player.dy = 0;
+    demoPlayer.dx = 0;
+    demoPlayer.dy = 0;
   } 
 }
 

@@ -1,10 +1,12 @@
 
 import {renderChar, keyDown, keyUp} from './scripts/eevee.js';
+// import {renderDemo, demoKeyDown, demoKeyUp} from './scripts/demoplayer.js';
 // import {items} from './scripts/items.js'
 window.addEventListener("load", () => {
   document.addEventListener('keydown', keyDown);
   document.addEventListener('keyup', keyUp);
   
+  // renderDemo();
   renderChar();
 
 })

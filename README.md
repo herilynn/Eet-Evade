@@ -64,6 +64,8 @@ Unfortunately I didn't add all the features I had planned. Most of the things fr
 
 -include some high score chart that holds scores of the player.
 
+-include a demo on the right allowing player to test out controls/gameplay before starting the actual
+
 <!-- ~~~~ -->
 
 # Sources:
