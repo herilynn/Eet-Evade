@@ -13,6 +13,8 @@ let jolteonSound = new Audio("/src/assets/jolteon_cry.mp3");
 let flareonSound = new Audio("/src/assets/flareon_cry.mp3");
 let vaporeonSound = new Audio("/src/assets/vaporeon_cry.mp3");
 
+let eatingSound = new Audio("/src/assets/eating_fruit.mp3");
+
 let nintendoSound = new Audio("/src/assets/gba_startup.mp3");
 // nintendoSound.loop = true;
 
@@ -383,12 +385,16 @@ function checkCollision() {
           seconds -= 5;
         } else if (item.type === 'berry' && player.currentEvolution === 'eevee') {
           points += 2;
+          eatingSound.play();
         } else if (item.type === 'berry' && player.currentEvolution === 'jolteon') {
           points += 4;
+          eatingSound.play();
         } else if (item.type === "berry" && player.currentEvolution === 'flareon') {
           points += 4;
+          eatingSound.play();
         } else if (item.type === "berry" && player.currentEvolution === "vaporeon") {
           points += 4;
+          eatingSound.play();
         } else if (item.type === "poke" && player.currentEvolution === "jolteon") {
           points += 3;
         } else if (item.type === "poke" && player.currentEvolution === "flareon") {
