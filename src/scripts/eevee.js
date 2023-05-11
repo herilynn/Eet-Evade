@@ -4,6 +4,60 @@ let points = 0;
 let gameOver = false;
 let gameStart = false;
 
+let seconds = 120;
+let minutes = 0;
+
+let appendMinutes = document.getElementById("minutes");
+let appendSeconds = document.getElementById("seconds");
+
+function startTimer() {
+  if (seconds === 0 && minutes === 0) {
+    gameOver = true; 
+    return;
+  }
+
+  if (minutes === 0) {
+    minutes = 59;
+    seconds --;
+  } else {
+    minutes--;
+  }
+
+  appendMinutes.innerHTML = minutes < 10 ? "0" + minutes : minutes;
+  appendSeconds.innerHTML = seconds < 10 ? "0" + seconds : seconds;
+}
+
+// function startTimer() {
+//   minutes++;
+
+//   if (minutes < 9) {
+//     appendMinutes.innerHTML = "0" + minutes;
+//   }
+//   if (minutes > 9) {
+//     appendMinutes.innerHTML = minutes;
+//   }
+//   if (minutes > 99) {
+//     seconds++;
+//     appendSeconds.innerHTML = "0" + seconds;
+//     minutes = 0;
+//     appendMinutes.innerHTML = "0" + 0;
+//   }
+//   if (seconds > 9) {
+//     appendSeconds.innerHTML = seconds;
+//   }
+// }
+
+const endScreen = {
+  spriteSheet: new Image(),
+  frameWidth: 850,
+  frameHeight: 400,
+  currentFrameIndex: 0,
+  totalFrames: 16,
+  frameDuration: 100,
+}
+endScreen.spriteSheet.src = "/src/assets/spritesheet.png";
+
+
 class Player {
   constructor() {
     this.width = 50;
@@ -111,6 +165,7 @@ function renderChar() {
 
   clear();
   drawOuterBackground();
+  startTimer();
   
   generateItems();
   checkCollision();
@@ -123,6 +178,7 @@ function renderChar() {
   }
   else {
     console.log("game over")
+    animateEndScreen();
   }
 }
 
@@ -133,6 +189,22 @@ function startGame() {
   renderChar();
 }
 
+
+function drawEndScreen() {
+    const frameX = endScreen.currentFrameIndex * endScreen.frameWidth;
+    ctx.drawImage(
+      endScreen.spriteSheet,
+      frameX,
+      0,
+      endScreen.frameWidth,
+      endScreen.frameHeight + 300,
+      0,
+      0,
+      canvas.width,
+      canvas.height
+    );
+  }
+  
 function drawStartScreen() {
   clear();
 
@@ -178,9 +250,13 @@ function getWrappedTextLines(text, maxWidth, fontSize) {
   return lines;
 }
 
-//   let textWidth = ctx.measureText(text.width);
-//   ctx.fillText(text, canvas.width/2, canvas.height/2, textWidth);
-// }
+function animateEndScreen() {
+  endScreen.currentFrameIndex = (endScreen.currentFrameIndex + 1) % endScreen.totalFrames;
+  drawEndScreen();
+  setTimeout(animateEndScreen, endScreen.frameDuration);
+}
+
+// animateStartScreen();
 
 function moveRight() {
   player.dx = player.speed;
