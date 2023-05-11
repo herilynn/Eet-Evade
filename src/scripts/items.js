@@ -93,11 +93,11 @@ export function generateItems() {
     const speed = Math.random() * 0.5 + 1;
 
     const types = [
-      {type: 'berry', weight: 0}, 
+      {type: 'berry', weight: 30}, 
       {type: 'poke', weight: 5}, 
       {type: 'great', weight: 3}, 
       {type: 'ultra', weight: 2}, 
-      {type: 'master', weight: 31}, 
+      {type: 'master', weight: 1}, 
       {type: 'fire', weight: 4}, 
       {type: 'thunder', weight: 4}, 
       {type: 'water', weight: 4}

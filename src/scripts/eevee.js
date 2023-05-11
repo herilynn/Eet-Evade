@@ -173,6 +173,12 @@ function renderChar() {
 
   newPos();
   player.draw();
+
+  if (points >= 100) {
+    gameOver = true;
+    console.log("You Win!")
+  }
+
   if (!gameOver){
     animationId = requestAnimationFrame(renderChar);
   }
@@ -300,32 +306,61 @@ function checkCollision() {
           gameOver = true; 
         }  else if (item.type === 'fire') {
           player.currentEvolution = 'flareon';
+          points += 5;
         } else if (item.type === 'thunder') {
           player.currentEvolution = 'jolteon';
+          points += 5;
         } else if (item.type === 'water') {
           player.currentEvolution = 'vaporeon';
+          points += 5;
         } else if (item.type === 'poke' && player.currentEvolution === 'eevee') {
           player.currentEvolution = 'eevee_stunned';
+          seconds -= 2;
         } else if (item.type === 'great' && player.currentEvolution === 'eevee') {
           player.currentEvolution = 'eevee_stunned';
+          seconds -= 4;
         } else if (item.type === 'great' && player.currentEvolution === 'flareon') {
           player.currentEvolution = 'flareon_stunned';
+          seconds -= 3;
         } else if (item.type === 'great' && player.currentEvolution === 'jolteon') {
           player.currentEvolution = 'jolteon_stunned';
+          seconds -= 3;
         } else if (item.type === 'great' && player.currentEvolution === 'vaporeon') {
           player.currentEvolution = 'vaporeon_stunned';
+          seconds -= 3;
         } else if (item.type === 'ultra' && player.currentEvolution === 'eevee') {
           player.currentEvolution = 'eevee_stunned';
+          seconds -= 8;
         } else if (item.type === 'ultra' && player.currentEvolution === 'flareon') {
           player.currentEvolution = 'flareon_stunned';
+          seconds -= 5;
         } else if (item.type === 'ultra' && player.currentEvolution === 'jolteon') {
           player.currentEvolution = 'jolteon_stunned';
+          seconds -= 5;
         } else if (item.type === 'ultra' && player.currentEvolution === 'vaporeon') {
-          player.currentEvolution = 'vaporeon_stunned';
+          player.currentEvolution = 'vaporeon_stunned'; 
+          seconds -= 5;
+        } else if (item.type === 'berry' && player.currentEvolution === 'eevee') {
+          points += 2;
+        } else if (item.type === 'berry' && player.currentEvolution === 'jolteon') {
+          points += 4;
+        } else if (item.type === "berry" && player.currentEvolution === 'flareon') {
+          points += 4;
+        } else if (item.type === "berry" && player.currentEvolution === "vaporeon") {
+          points += 4;
+        } else if (item.type === "poke" && player.currentEvolution === "jolteon") {
+          points += 3;
+        } else if (item.type === "poke" && player.currentEvolution === "flareon") {
+          points += 3;
+        } else if (item.type === "poke" && player.currentEvolution === "vaporeon") {
+          points += 3;
         }
         ;
   
         player.sprite.src = player.evolutionSprites[player.currentEvolution];
+
+        const pointsGauge = document.getElementById("pointsGauge");
+        pointsGauge.value = points;
 
         // player.setTempSprite(item.type + '.png');
       }

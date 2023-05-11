@@ -27,6 +27,15 @@
   z-index: 1;
 }
 
+#pointsGauge {
+  width: 150px;
+  height: 20px;
+  position: absolute;
+  top: 50%;
+  left: 1%;
+  z-index: 1;
+}
+
 #seconds, #minutes {
   font-size: 2em;
   color: rgba(113, 235, 31, 0.764);
