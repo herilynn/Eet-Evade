@@ -8,20 +8,20 @@ let seconds = 120;
 let minutes = 0;
 
 let currentAudio = null;
-let eeveeSound = new Audio("/src/assets/eevee_cry.mp3");
-let jolteonSound = new Audio("/src/assets/jolteon_cry.mp3");
-let flareonSound = new Audio("/src/assets/flareon_cry.mp3");
-let vaporeonSound = new Audio("/src/assets/vaporeon_cry.mp3");
+let eeveeSound = new Audio("src/assets/eevee_cry.mp3");
+let jolteonSound = new Audio("src/assets/jolteon_cry.mp3");
+let flareonSound = new Audio("src/assets/flareon_cry.mp3");
+let vaporeonSound = new Audio("src/assets/vaporeon_cry.mp3");
 
-let eatingSound = new Audio("/src/assets/eating_fruit.mp3");
+let eatingSound = new Audio("src/assets/eating_fruit.mp3");
 
-let nintendoSound = new Audio("/src/assets/gba_startup.mp3");
+let nintendoSound = new Audio("src/assets/gba_startup.mp3");
 // nintendoSound.loop = true;
 
-let bgSound = new Audio("/src/assets/foreboding_forest.mp3");
+let bgSound = new Audio("src/assets/foreboding_forest.mp3");
 bgSound.loop = true;
 
-let dangerSound = new Audio("/src/assets/red_health.mp3");
+let dangerSound = new Audio("src/assets/red_health.mp3");
 dangerSound.loop = true;
 
 let appendMinutes = document.getElementById("minutes");
@@ -102,7 +102,7 @@ const endScreen = {
   totalFrames: 16,
   frameDuration: 100,
 }
-endScreen.spriteSheet.src = "/src/assets/spritesheet.png";
+endScreen.spriteSheet.src = "src/assets/spritesheet.png";
 
 
 export class Player {
@@ -117,14 +117,14 @@ export class Player {
 
     this.currentEvolution = 'eevee';
     this.evolutionSprites = {
-      eevee: '/src/assets/eevee_back.png',
-      flareon: '/src/assets/flareon_back.png',
-      jolteon: '/src/assets/jolteon_back.png',
-      vaporeon: '/src/assets/vaporeon_back.png',
-      eevee_stunned: '/src/assets/eevee_stunned.png',
-      flareon_stunned: '/src/assets/flareon_stunned.png',
-      jolteon_stunned: '/src/assets/jolteon_stunned.png',
-      vaporeon_stunned: '/src/assets/vaporeon_stunned.png'
+      eevee: 'src/assets/eevee_back.png',
+      flareon: 'src/assets/flareon_back.png',
+      jolteon: 'src/assets/jolteon_back.png',
+      vaporeon: 'src/assets/vaporeon_back.png',
+      eevee_stunned: 'src/assets/eevee_stunned.png',
+      flareon_stunned: 'src/assets/flareon_stunned.png',
+      jolteon_stunned: 'src/assets/jolteon_stunned.png',
+      vaporeon_stunned: 'src/assets/vaporeon_stunned.png'
     };
 
     this.sprite = new Image();
