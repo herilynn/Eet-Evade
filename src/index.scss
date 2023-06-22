@@ -1,24 +1,26 @@
+body {
+  margin: 0;
+}
 
-
-// #backgroundCanvas {
-//   width: 70%;
-//   height: 70%;
-//   position: absolute;
-//   top: 50%;
-//   left: 50%;
-//   transform: translate(-50%, -50%);
-// }
+.gbBg {
+  width: 70%;
+  height: 100%;
+  position: relative;
+}
 
 #backgroundCanvas {
-  width: 45%;
-  height: 80%;
+  width: 45.3%;
+  height: 56.7%;
   position: absolute;
-  top: 10%;
-  left: 12%;
+  top: 8.5%;
+  left: 12.2%;
 }
 
 #demoCanvas {
-  position: absolute;
+  position: relative;
+  display: relative;
+  flex-direction: column;
+  align-items: center;
   width: 25%;
   height: 50%;
   left: 72%;
@@ -81,7 +83,7 @@
   text-align: center;
   // width: 500px;
   position: absolute;
-  top: 25%;
+  top: 15%;
   left: 3%;
   // transform: translate(-50%, -50%);
   z-index: 1;
@@ -92,8 +94,8 @@
   height: 34px;
   border-radius: 50%;
   position: absolute;
-  top: 36.2%;
-  left: 4.01%;
+  top: 26.7%;
+  left: 4.07%;
   // background-color: greenyellow;
   // background-color: rgba(215, 20, 20, 0.548);
   background-color: rgba(166, 234, 65, 0.953);
@@ -101,17 +103,18 @@
 }
 
 h1 {
-  width: 45%;
-  height: 77.4%;
+  width: 45.4%;
+  height: 54.4%;
   color: rgba(21, 41, 50, 0.356);
   // background-color: #9cbc0f43;
   background-color: rgba(57, 74, 24, 0.646);
   // background-color: rgba(149, 44, 44, 0.399);
-  top: 4.5%;
-  left: 12%;
+  top: 3%;
+  left: 12.2%;
   text-align: center;
   position: absolute;
   z-index: 1;
+  border-radius: 5px;
 }
 
 #pointsGauge {
@@ -127,4 +130,19 @@ h1 {
 #seconds, #minutes {
   font-size: 2em;
   color: rgba(113, 235, 31, 0.764);
+}
+
+.legend {
+  color: white;
+  padding: 5px;
+  height: 80%;
+  width: 20%;
+  left: 75%;
+  border-radius: 15px;
+  box-sizing: border-box;
+  position: absolute;
+}
+
+.legendItems {
+  font-size: 20px;
 }
