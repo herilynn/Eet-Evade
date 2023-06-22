@@ -385,12 +385,12 @@ function animateEndScreen() {
 
 function moveRight() {
   player.dx = player.speed;
-  demoPlayer.dx = demoPlayer.speed;
+  // demoPlayer.dx = demoPlayer.speed;
 }
 
 function moveLeft() {
   player.dx = -player.speed;
-  demoPlayer.dx = -demoPlayer.speed;
+  // demoPlayer.dx = -demoPlayer.speed;
 }
 
 export function keyDown(e) {
@@ -405,8 +405,8 @@ export function keyUp(e) {
   if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
     player.dx = 0;
     player.dy = 0;
-    demoPlayer.dx = 0;
-    demoPlayer.dy = 0;
+    // demoPlayer.dx = 0;
+    // demoPlayer.dy = 0;
   } 
 }
 
