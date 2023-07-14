@@ -177,3 +177,23 @@ h1 {
   text-shadow: 0 0 10px;
   background-color: rgba(153, 205, 50, 0.23);
 }
+
+#popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid black;
+  text-align: center;
+  z-index: 1;
+  border-radius: 12px;
+  color: whitesmoke;
+  font-size: 20px;
+  background: linear-gradient(#d564e6, #9198e5, rgb(68, 97, 200));  padding: 3%;
+  text-shadow: 1px 1px 2px purple, 0 0 1em red, 0 0 0.2em blue;
+    // display: none;
+}
+
+.hidden {
+  display: none;
+}

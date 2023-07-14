@@ -288,11 +288,22 @@ function renderChar() {
 
   if (points >= 200) {
     gameOver = true;
-    console.log("You Win!")
+    showPopUp();
+    // console.log("You Win!")
     // renderChar();
   }
 
+  function showPopUp() {
+    const popup = document.getElementById("popup");
+    popup.classList.remove("hidden");
+    const closeButton = document.getElementById("closePopup");
+    closeButton.addEventListener("click", hidePopup);
+  }
   
+  function hidePopup() {
+    const popup = document.getElementById("popup");
+    popup.classList.add("hidden");
+  }
 
   if (!gameOver){
     animationId = requestAnimationFrame(renderChar);
@@ -305,6 +316,8 @@ function renderChar() {
     nintendoSound.play();
   }
 }
+
+
 
 // animationId = requestAnimationFrame(renderChar);
 
