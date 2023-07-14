@@ -353,7 +353,7 @@ function drawStartScreen() {
   ctx.font = '30px Arial';
   ctx.textAlign = 'center';
 
-  let text = 'Reach the required amount of points by collecting items. HOWEVER, avoid the pokeballs that are trying to catch you. They will take away time or worse; lose if you get hit by the masterball(purple). If you evolve from getting the stones; pokeballs(red) will not take time away. Points will double when evolved. Press "spacebar" to start. Left and right arrows control your character.';
+  let text = 'Reach the required amount of points (indicated by the gauge on the bottom) by collecting items before the timmer hits 0. HOWEVER, avoid the pokeballs that are trying to catch you. They will take away time or worse; lose if you get hit by the masterball(purple). If you evolve from getting the stones; pokeballs(red) will not take time away. Points will double when evolved. Press "spacebar" to start. Left and right arrows control your character.';
 
   const textLines = getWrappedTextLines(text, canvas.width - 40, 16);
 
