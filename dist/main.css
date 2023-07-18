@@ -152,12 +152,12 @@ h1 {
 
 #startButton {
   background-color: rgba(94, 222, 149, 0.77);
-  position: relative;
+  position: absolute;
   z-index: 1;
   width: 30%;
   height: 5%;
   left: 20%;
-  top: 1%;
+  top: 50%;
   border-radius: 8px;
   color: black;
   font-size: 100%;
@@ -186,7 +186,7 @@ h1 {
 }
 
 #soundButton {
-  position: fixed;
+  position: absolute;
   z-index: 1;
   left: 67.2%;
   top: 9%;
