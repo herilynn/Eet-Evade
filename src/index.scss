@@ -178,6 +178,21 @@ h1 {
   background-color: rgba(153, 205, 50, 0.23);
 }
 
+#startButton {
+  background-color: rgba(94, 222, 149, 0.77);
+  position: relative;
+  z-index: 1;
+  width: 30%;
+  height: 5%;
+  left: 20%;
+  top: 1%;
+  border-radius: 8px;
+  color: black;
+  font-size: 100%;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+}
+
 #popup {
   position: fixed;
   top: 50%;
@@ -196,4 +211,17 @@ h1 {
 
 .hidden {
   display: none;
+}
+
+#soundButton {
+  position: fixed;
+  z-index: 1;
+  left: 67.2%;
+  top: 9%;
+  border-radius: 5px;
+  height: 7%;
+  width: 7%;
+  background-color: rgba(218, 165, 32, 0.458);
+  color: yellow;
+  font-weight: bold;
 }

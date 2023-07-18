@@ -28,7 +28,7 @@ let appendMinutes = document.getElementById("minutes");
 let appendSeconds = document.getElementById("seconds");
 
 function startTimer() {
-  if (seconds === 0 && minutes === 0) {
+  if (seconds <= 0 && minutes === 0) {
     gameOver = true; 
     return;
   }
@@ -289,8 +289,6 @@ function renderChar() {
   if (points >= 200) {
     gameOver = true;
     showPopUp();
-    // console.log("You Win!")
-    // renderChar();
   }
 
   function showPopUp() {
@@ -324,7 +322,9 @@ function renderChar() {
 function startGame() {
   gameStart = true;
   renderChar();
-  bgSound.play();
+  // bgSound.play();
+  const startButton = document.getElementById('startButton');
+  startButton.style.display = 'none';
 }
 
 
@@ -353,7 +353,7 @@ function drawStartScreen() {
   ctx.font = '30px Arial';
   ctx.textAlign = 'center';
 
-  let text = 'Reach the required amount of points (indicated by the gauge on the bottom) by collecting items before the timmer hits 0. HOWEVER, avoid the pokeballs that are trying to catch you. They will take away time or worse; lose if you get hit by the masterball(purple). If you evolve from getting the stones; pokeballs(red) will not take time away. Points will double when evolved. Press "spacebar" to start. Left and right arrows control your character.';
+  let text = 'Reach the required amount of points (indicated by the gauge on the bottom) by collecting items before the timmer hits 0. HOWEVER, avoid the pokeballs that are trying to catch you. They will take away time or worse; lose if you get hit by the masterball(purple). If you evolve from getting the stones; pokeballs(red) will not take time away. Points will double when evolved. Press the "Start Game" button when ready. Left and right arrows control your character.';
 
   const textLines = getWrappedTextLines(text, canvas.width - 40, 16);
 
@@ -423,6 +423,44 @@ export function keyUp(e) {
   } 
 }
 
+const soundButton = document.getElementById('soundButton');
+soundButton.addEventListener('click', toggleSound);
+
+function toggleSound() {
+  if (bgSound.paused) {
+    bgSound.play();
+    
+    if (seconds <= 30 && !gameOver) {
+      dangerSound.play();
+    }
+
+    if (seconds <= 0 || gameOver) {
+      // nintendoSound.play();
+      dangerSound.pause();
+      bgSound.pause();
+    }
+    soundButton.textContent = 'Sound: On'; 
+    soundButton.style.color = 'greenyellow'
+    soundButton.style.textShadow = '2px 2px 8px blue, 0 0 1em yellow, 0 0 0.2em green';
+
+
+    
+  } else {
+    bgSound.pause();
+    dangerSound.pause();
+    nintendoSound.pause();
+    eeveeSound.pause();
+    jolteonSound.pause();
+    flareonSound.pause();
+    vaporeonSound.pause();
+    eatingSound.pause();
+    soundButton.textContent = 'Sound: Off';
+    soundButton.style.color = 'red';
+    soundButton.style.textShadow = '2px 2px 8px orange, 0 0 1em yellow, 0 0 0.2em red';
+
+  }
+}
+
 function checkCollision() {
   for (let i = 0; i < items.length; i++) {
     const item = items[i];
@@ -440,64 +478,64 @@ function checkCollision() {
           gameOver = true;
         } else if (item.type === 'master' && player.currentEvolution === 'vaporeon') {
           gameOver = true; 
-        }  else if (item.type === 'fire') {
+        }  else if (item.type === 'fire' && !bgSound.paused) {
           player.currentEvolution = 'flareon';
           flareonSound.play();
           points += 5;
-        } else if (item.type === 'thunder') {
+        } else if (item.type === 'thunder' && !bgSound.paused) {
           player.currentEvolution = 'jolteon';
           jolteonSound.play();
           points += 5;
-        } else if (item.type === 'water') {
+        } else if (item.type === 'water' && !bgSound.paused) {
           player.currentEvolution = 'vaporeon';
           vaporeonSound.play();
           points += 5;
-        } else if (item.type === 'poke' && player.currentEvolution === 'eevee') {
+        } else if (item.type === 'poke' && player.currentEvolution === 'eevee' && !bgSound.paused) {
           player.currentEvolution = 'eevee_stunned';
           eeveeSound.play();
           seconds -= 2;
-        } else if (item.type === 'great' && player.currentEvolution === 'eevee') {
+        } else if (item.type === 'great' && player.currentEvolution === 'eevee' && !bgSound.paused) {
           player.currentEvolution = 'eevee_stunned';
           eeveeSound.play();
           seconds -= 4;
-        } else if (item.type === 'great' && player.currentEvolution === 'flareon') {
+        } else if (item.type === 'great' && player.currentEvolution === 'flareon' && !bgSound.paused) {
           player.currentEvolution = 'flareon_stunned';
           flareonSound.play();
           seconds -= 3;
-        } else if (item.type === 'great' && player.currentEvolution === 'jolteon') {
+        } else if (item.type === 'great' && player.currentEvolution === 'jolteon' && !bgSound.paused) {
           player.currentEvolution = 'jolteon_stunned';
           jolteonSound.play();
           seconds -= 3;
-        } else if (item.type === 'great' && player.currentEvolution === 'vaporeon') {
+        } else if (item.type === 'great' && player.currentEvolution === 'vaporeon' && !bgSound.paused) {
           player.currentEvolution = 'vaporeon_stunned';
           vaporeonSound.play();
           seconds -= 3;
-        } else if (item.type === 'ultra' && player.currentEvolution === 'eevee') {
+        } else if (item.type === 'ultra' && player.currentEvolution === 'eevee' && !bgSound.paused) {
           player.currentEvolution = 'eevee_stunned';
           eeveeSound.play();
           seconds -= 8;
-        } else if (item.type === 'ultra' && player.currentEvolution === 'flareon') {
+        } else if (item.type === 'ultra' && player.currentEvolution === 'flareon' && !bgSound.paused) {
           player.currentEvolution = 'flareon_stunned';
           flareonSound.play();
           seconds -= 5;
-        } else if (item.type === 'ultra' && player.currentEvolution === 'jolteon') {
+        } else if (item.type === 'ultra' && player.currentEvolution === 'jolteon' && !bgSound.paused) {
           player.currentEvolution = 'jolteon_stunned';
           jolteonSound.play();
           seconds -= 5;
-        } else if (item.type === 'ultra' && player.currentEvolution === 'vaporeon') {
+        } else if (item.type === 'ultra' && player.currentEvolution === 'vaporeon' && !bgSound.paused) {
           player.currentEvolution = 'vaporeon_stunned'; 
           vaporeonSound.play();
           seconds -= 5;
-        } else if (item.type === 'berry' && player.currentEvolution === 'eevee') {
+        } else if (item.type === 'berry' && player.currentEvolution === 'eevee' && !bgSound.paused) {
           points += 2;
           eatingSound.play();
-        } else if (item.type === 'berry' && player.currentEvolution === 'jolteon') {
+        } else if (item.type === 'berry' && player.currentEvolution === 'jolteon' && !bgSound.paused) {
           points += 4;
           eatingSound.play();
-        } else if (item.type === "berry" && player.currentEvolution === 'flareon') {
+        } else if (item.type === "berry" && player.currentEvolution === 'flareon' && !bgSound.paused) {
           points += 4;
           eatingSound.play();
-        } else if (item.type === "berry" && player.currentEvolution === "vaporeon") {
+        } else if (item.type === "berry" && player.currentEvolution === "vaporeon" && !bgSound.paused) {
           points += 4;
           eatingSound.play();
         } else if (item.type === "poke" && player.currentEvolution === "jolteon") {
@@ -519,13 +557,15 @@ function checkCollision() {
   }
 }
 
-document.addEventListener('keydown', function(event) {
-  if (event.code === 'Space') {
-    startGame();
-  }
-});
+const startButton = document.getElementById('startButton');
+startButton.addEventListener('click', startGame);
+// document.addEventListener('keydown', function(event) {
+//   if (event.code === 'Space') {
+//     startGame();
+//   }
+// });
 
-canvas.addEventListener('click', startGame);
+// canvas.addEventListener('click', startGame);
 
 // export {clear, drawOuterBackground, drawPlayer, generateItems, updateItems, newPos};
 export { renderChar };
