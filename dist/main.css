@@ -195,7 +195,8 @@ body {
   border-radius: 5px;
   height: 7%;
   width: 7%;
-  background-color: rgba(218, 165, 32, 0.458);
+  background-color: rgba(193, 145, 229, 0.7215686275);
   color: yellow;
   font-weight: bold;
+  border: none;
 }

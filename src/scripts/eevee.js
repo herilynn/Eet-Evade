@@ -434,6 +434,7 @@ function toggleSound() {
     
     if (seconds <= 30 && !gameOver) {
       dangerSound.play();
+      // bgSound.pause();
     }
 
     if (seconds <= 0 || gameOver) {
