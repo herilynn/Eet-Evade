@@ -324,7 +324,9 @@ function startGame() {
   renderChar();
   // bgSound.play();
   const startButton = document.getElementById('startButton');
+  const gameTitle = document.getElementById('gameTitle');
   startButton.style.display = 'none';
+  gameTitle.style.display = 'none';
 }
 
 
@@ -346,7 +348,7 @@ function drawEndScreen() {
 function drawStartScreen() {
   clear();
 
-  ctx.fillStyle = "#8bac0f";
+  ctx.fillStyle = "transparent";
   ctx.fillRect(10, canvas.height/2 - 100, canvas.width - 12, 299);
 
   ctx.fillStyle = '#000000';
